@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="Портфолио Ихлосбека — Python и веб-разработка.">
+  <meta property="og:title" content="{{ name }} — Developer Portfolio">
+  <meta property="og:description" content="Python и веб-разработка: проекты, навыки, контакты.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c5ff5a'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' text-anchor='middle' fill='%2310150a'%3EIX%3C/text%3E%3C/svg%3E">
+  <noscript><style>.boot-screen{display:none!important}body.booting{overflow:auto}.reveal{opacity:1!important;transform:none!important}.skill-track i{width:var(--lvl)!important}</style></noscript>
+  <title>{{ name }} — Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="{{ url_for('static', filename='bg-poster.jpg') }}" aria-hidden="true" tabindex="-1">
+    <source src="{{ url_for('static', filename='bg.mp4') }}" type="video/mp4">
+  </video>
+  <div class="bg-shade"></div>
+  <div class="boot-screen" id="bootScreen" aria-label="Инициализация сайта" data-lines="{{ boot_lines|tojson|forceescape }}">
+    <div class="boot-panel">
+      <div class="boot-top">
+        <span class="boot-mark"><i></i> IX / SYSTEM</span>
+        <span class="boot-status"><b></b> ONLINE</span>
+      </div>
+      <div class="boot-title">СОЗДАЮ<br><span>ИНТЕРФЕЙС</span></div>
+      <div class="terminal" id="terminal" aria-live="polite">
+        <div class="terminal-head"><span>portfolio.init</span><span>PYTHON · FLASK</span></div>
+        <div id="terminalLines"></div>
+        <div class="terminal-cursor"><span></span></div>
+      </div>
+      <div class="boot-bottom">
+        <div class="progress-track"><span id="progressBar"></span></div>
+        <div class="progress-meta"><span id="progressText">0%</span><span>BUILDING PERSONAL WEBSITE</span></div>
+      </div>
+      <button class="skip-boot" id="skipBoot" type="button">Пропустить интро ↗</button>
+    </div>
+  </div>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="noise"></div>
+
+  <header class="nav-wrap"><nav class="nav">
+    <a class="brand" href="#home"><span class="brand-icon">IX</span><span>IXLOSBEK<span class="brand-dot">.</span></span></a>
+    <div class="nav-links">
+      <a href="#projects">Проекты</a>
+      <a href="#skills">Навыки</a>
+      <a href="#about">Обо мне</a>
+      <a href="#contact" class="nav-contact">Связаться <span>↗</span></a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
+  </nav></header>
+
+  <main>
+    <section class="hero reveal" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> OPEN TO LEARNING & COLLABORATION</div>
+        <h1>ПРИВЕТ,<br>Я <span class="gradient-name">{{ name|upper }}</span><span class="hero-period">.</span></h1>
+        <div class="role-line"><span class="role-prompt">&gt;&gt;&gt;</span> <span id="roleText" data-roles="{{ roles|tojson|forceescape }}">{{ roles[0] }}</span><span class="role-caret"></span></div>
+        <p class="hero-description">Начинающий разработчик. Создаю веб-проекты, изучаю Python и превращаю идеи в работающие цифровые продукты.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Смотреть проекты <span>↘</span></a>
+          <a class="button button-ghost" href="#about">Обо мне</a>
+        </div>
+        <div class="hero-meta"><span>PORTFOLIO / 2026</span><span class="meta-line"></span><span>PYTHON DEVELOPER</span></div>
+      </div>
+      <div class="hero-visual" aria-label="Окно с Python-кодом">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="code-window">
+          <div class="code-head"><i></i><i></i><i></i><span>portfolio.py</span></div>
+          <pre class="code-body" id="codeBody" data-code="{{ snippet|tojson|forceescape }}" aria-label="Python-код"></pre>
+        </div>
+        <div class="visual-label label-top">CREATIVE<br>DEVELOPMENT</div>
+        <div class="visual-label label-bottom">BUILD / LEARN / REPEAT</div>
+        <div class="visual-cross cross-one">+</div><div class="visual-cross cross-two">+</div>
+      </div>
+      <div class="scroll-hint"><span></span> SCROLL TO EXPLORE</div>
+    </section>
+
+    <div class="stats reveal">
+      {% for stat in stats %}<div class="stat"><b data-count="{{ stat.value }}">0</b><span>{{ stat.label }}</span></div>{% endfor %}
+    </div>
+
+    <div class="marquee reveal" aria-hidden="true"><div class="marquee-track">{% for _ in range(2) %}{% for item in marquee %}<span>{{ item }}</span><i>✦</i>{% endfor %}{% endfor %}</div></div>
+
+    <section class="section reveal" id="projects">
+      <div class="section-heading"><div><span class="section-index">01 — SELECTED WORK</span><h2>МОИ <em>ПРОЕКТЫ</em></h2></div><p>Идеи, эксперименты<br>и проекты в разработке.</p></div>
+      <div class="project-grid">
+        {% for project in projects %}
+        <article class="project-card reveal">
+          <div class="project-top"><span class="project-number">{{ project.number }}</span><span class="project-arrow">↗</span></div>
+          <h3>{{ project.name }}</h3>
+          <p>{{ project.description }}</p>
+          <div class="chips">{% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}</div>
+          <a class="project-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.action }} <span>↗</span></a>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section reveal" id="skills">
+      <div class="section-heading"><div><span class="section-index">02 — TOOLKIT</span><h2>МОИ <em>НАВЫКИ</em></h2></div><p>Инструменты, с которыми<br>я создаю свои проекты.</p></div>
+      <div class="skills-layout">
+        <div class="skills-intro"><div class="skill-symbol">{"<>"}</div><h3>Постоянно<br>изучаю новое.</h3><p>Каждый проект — возможность освоить технологию и стать лучше.</p></div>
+        <div class="skill-list">
+          {% for skill in skills %}
+          <div class="skill-item">
+            <div class="skill-info"><div><h3>{{ skill.name }}</h3><p>{{ skill.description }}</p></div><span>{{ skill.level }}%</span></div>
+            <div class="skill-track"><i data-level="{{ skill.level }}" style="--lvl:{{ skill.level }}%"></i></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="about">
+      <div class="section-heading"><div><span class="section-index">03 — A LITTLE ABOUT ME</span><h2>ОБО <em>МНЕ</em></h2></div></div>
+      <div class="about-card"><div class="about-number">IX.</div><div><h3>Учусь. Практикуюсь. Создаю.</h3><p>Я прошёл годовые курсы программирования и продолжаю учиться на практике: создаю собственные проекты и публикую их в интернете. Хочу развиваться в веб-разработке на Python, пробовать новые технологии и работать над интересными задачами.</p></div><div class="about-stamp">MADE<br>WITH<br>IDEAS</div></div>
+    </section>
+
+    <section class="section contact-section reveal" id="contact">
+      <span class="section-index">04 — LET'S CONNECT</span>
+      <h2>ЕСТЬ <em>ИДЕЯ?</em><br>ДАВАЙ ОБСУДИМ.</h2>
+      <p>Открыт к общению, совместным проектам и новым возможностям.</p>
+      <div class="contact-actions">
+        <a class="button button-primary" href="https://t.me/{{ telegram }}" target="_blank" rel="noopener noreferrer">Написать в Telegram <span>↗</span></a>
+        <a class="button button-ghost" href="mailto:{{ email }}">Отправить email <span>↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#home"><span class="brand-icon">IX</span><span>IXLOSBEK<span class="brand-dot">.</span></span></a><span>© {{ name }} · Узбекистан · 2026</span><a href="#home">НАВЕРХ ↑</a></footer>
+</body>
+</html>
