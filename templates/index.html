@@ -114,7 +114,7 @@
           {% for skill in skills %}
           <div class="skill-item">
             <div class="skill-info"><div><h3>{{ skill.name }}</h3><p>{{ skill.description }}</p></div><span>{{ skill.level }}%</span></div>
-            <div class="skill-track"><i data-level="{{ skill.level }}" style="--lvl:{{ skill.level }}%"></i></div>
+            <div class="skill-track"><i data-level="{{ skill.level }}" style="--lvl:%{{ skill.level }}%"></i></div>
           </div>
           {% endfor %}
         </div>
@@ -132,6 +132,12 @@
       <p>Открыт к общению, совместным проектам и новым возможностям.</p>
       <div class="contact-actions">
         <a class="button button-primary" href="https://t.me/{{ telegram }}" target="_blank" rel="noopener noreferrer">Написать в Telegram <span>↗</span></a>
+<a class="button button-ghost"
+   href="https://www.instagram.com/darknight.dev/"
+   target="_blank"
+   rel="noopener noreferrer">
+    Instagram @darknight.dev <span>↗</span>
+</a>
         <a class="button button-ghost" href="mailto:{{ email }}">Отправить email <span>↗</span></a>
       </div>
     </section>
