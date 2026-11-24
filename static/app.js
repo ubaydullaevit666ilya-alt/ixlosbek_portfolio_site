@@ -224,17 +224,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     trigger.addEventListener("click", () => {
+        modal.style.display = "flex";
         modal.classList.add("active");
         code.focus();
     });
 
     close.addEventListener("click", () => {
         modal.classList.remove("active");
+            modal.style.display = "none";
     });
 
     modal.addEventListener("click", (event) => {
         if (event.target === modal) {
             modal.classList.remove("active");
+            modal.style.display = "none";
         }
     });
 
@@ -261,6 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
             modal.classList.remove("active");
+            modal.style.display = "none";
         }
     });
 });
