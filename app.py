@@ -56,8 +56,7 @@ PROJECTS = [
 SKILLS = [
     {"name": "Python", "description": "Логика и серверная разработка", "level": 55},
     {"name": "HTML", "description": "Структура веб-страниц", "level": 50},
-    {"name": "CSS", "description": "Дизайн и адаптивная вёрстка", "level": 40},
-    {"name": "JavaScript", "description": "Интерактивность интерфейсов", "level": 35},
+    {"name": "CSS", "description": "Дизайн и адаптивная вёрстка", "level": 40}, 
 ]
 
 BOOT_LINES = [
