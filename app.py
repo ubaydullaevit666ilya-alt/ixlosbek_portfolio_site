@@ -51,6 +51,14 @@ PROJECTS = [
         "action": "Попробовать",
         "number": "05",
     },
+    {
+        "name": "Avto Market",
+        "description": "Веб-проект автомобильного маркетплейса.",
+        "tags": ["Автомобили", "Marketplace", "Netlify"],
+        "url": "https://avto-market.netlify.app/",
+        "action": "Открыть проект",
+        "number": "06",
+    },
 ]
 
 SKILLS = [
