@@ -208,3 +208,59 @@
     });
   }
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+    const trigger = document.getElementById("secretTrigger");
+    const modal = document.getElementById("secretModal");
+    const close = document.getElementById("secretClose");
+    const code = document.getElementById("secretCode");
+    const submit = document.getElementById("secretSubmit");
+    const error = document.getElementById("secretError");
+    const message = document.getElementById("secretMessage");
+
+    if (!trigger || !modal || !close || !code || !submit || !error || !message) {
+        console.error("Secret Easter Egg: не найдены HTML-элементы");
+        return;
+    }
+
+    trigger.addEventListener("click", () => {
+        modal.classList.add("active");
+        code.focus();
+    });
+
+    close.addEventListener("click", () => {
+        modal.classList.remove("active");
+    });
+
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.classList.remove("active");
+        }
+    });
+
+    function unlockSecret() {
+        if (code.value === "1123") {
+            error.textContent = "";
+            code.style.display = "none";
+            submit.style.display = "none";
+            message.style.display = "block";
+        } else {
+            error.textContent = "Неверный код! Попробуй ещё раз.";
+            code.value = "";
+        }
+    }
+
+    submit.addEventListener("click", unlockSecret);
+
+    code.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            unlockSecret();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            modal.classList.remove("active");
+        }
+    });
+});

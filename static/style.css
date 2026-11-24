@@ -101,3 +101,22 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--lime);outline-offse
 /* затемнение фона при прокрутке, чтобы текст читался */
 body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:rgba(8,11,18,.86);opacity:var(--dim,0)}
 @media(max-width:600px){.code-body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:10.5px}}
+
+<div class="secret-modal" id="secretModal">
+    <div class="secret-box">
+        <button id="secretClose">×</button>
+        <h2>SECRET ACCESS</h2>
+        <p>Введи секретный код</p>
+
+        <input type="password" id="secretCode"
+               placeholder="Введите код" maxlength="4">
+
+        <button id="secretSubmit">РАЗБЛОКИРОВАТЬ</button>
+        <p id="secretError"></p>
+
+        <div id="secretMessage">
+            <h2>Dark_Night</h2>
+            <p>любит Дурдону ❤️</p>
+        </div>
+    </div>
+</div>
