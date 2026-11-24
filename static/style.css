@@ -102,21 +102,86 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--lime);outline-offse
 body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:rgba(8,11,18,.86);opacity:var(--dim,0)}
 @media(max-width:600px){.code-body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:10.5px}}
 
-<div class="secret-modal" id="secretModal">
-    <div class="secret-box">
-        <button id="secretClose">×</button>
-        <h2>SECRET ACCESS</h2>
-        <p>Введи секретный код</p>
 
-        <input type="password" id="secretCode"
-               placeholder="Введите код" maxlength="4">
+/* SECRET EASTER EGG */
+.secret-trigger {
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    z-index: 10001;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #c5ff5a;
+    border-radius: 50%;
+    background: #10151d;
+    color: #c5ff5a;
+    cursor: pointer;
+}
 
-        <button id="secretSubmit">РАЗБЛОКИРОВАТЬ</button>
-        <p id="secretError"></p>
+.secret-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10002;
+    background: rgba(0, 0, 0, .9);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
-        <div id="secretMessage">
-            <h2>Dark_Night</h2>
-            <p>любит Дурдону ❤️</p>
-        </div>
-    </div>
-</div>
+.secret-modal.active {
+    display: flex;
+}
+
+.secret-box {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    padding: 35px 25px;
+    text-align: center;
+    background: #10151d;
+    border: 1px solid #c5ff5a;
+    border-radius: 20px;
+    color: white;
+}
+
+.secret-box input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px;
+    margin: 15px 0;
+    background: #080b12;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 10px;
+}
+
+.secret-box button {
+    padding: 12px;
+    cursor: pointer;
+}
+
+#secretMessage {
+    display: none;
+    margin-top: 20px;
+}
+
+#secretMessage h2 {
+    color: #c5ff5a;
+}
+
+#secretError {
+    color: #ff6464;
+}
+
+/* Отступ меню от секретной кнопки */
+header nav {
+    padding-right: 65px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+    header nav {
+        padding-right: 0;
+    }
+}
